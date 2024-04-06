@@ -8,6 +8,7 @@ RUN dnf upgrade --refresh -y && \
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash && \
     source ~/.bashrc && \
     nvm install --lts && \
-    nvm use --lts
+    nvm use --lts && \
+    npm install -g docsify-cli
 
 CMD ["/bin/sh", "-c", "while true; do sleep 30; done;"]
