@@ -32,17 +32,20 @@ func getMyIpHandler(w http.ResponseWriter, r *http.Request) {
 
 	remoteIp := r.Header.Get("X-Forwarded-For")
 	if remoteIp == "" {
-		remoteIp = r.Header.Get("X-Real-IP")
-
+		remoteIp = r.Header.Get("X-ProxyUser-Ip")
 		if remoteIp == "" {
-			ip, _, err := net.SplitHostPort(r.RemoteAddr)
-			if err != nil {
-				w.Write([]byte("Cannot get remote IP address"))
-				w.WriteHeader(http.StatusBadRequest)
-				return
-			}
+			remoteIp = r.Header.Get("X-Real-IP")
 
-			remoteIp = ip
+			if remoteIp == "" {
+				ip, _, err := net.SplitHostPort(r.RemoteAddr)
+				if err != nil {
+					w.Write([]byte("Cannot get remote IP address"))
+					w.WriteHeader(http.StatusBadRequest)
+					return
+				}
+
+				remoteIp = ip
+			}
 		}
 	}
 
