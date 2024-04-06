@@ -3,7 +3,19 @@ package regulus
 import (
 	"net/http"
 	"time"
+
+	"github.com/rs/zerolog/log"
 )
+
+const AsciiArt = `╔═══╗            ╔╗         
+║╔═╗║            ║║         
+║╚═╝║╔══╗╔══╗╔╗╔╗║║ ╔╗╔╗╔══╗
+║╔╗╔╝║╔╗║║╔╗║║║║║║║ ║║║║║══╣
+║║║╚╗║║═╣║╚╝║║╚╝║║╚╗║╚╝║╠══║
+╚╝╚═╝╚══╝╚═╗║╚══╝╚═╝╚══╝╚══╝
+         ╔═╝║               
+         ╚══╝               
+`
 
 type Regulus struct {
 	server *http.Server
@@ -26,5 +38,6 @@ func New(addr string) *Regulus {
 }
 
 func (r *Regulus) Start() error {
+	log.Info().Str("address", r.server.Addr).Msg("Starting server")
 	return r.server.ListenAndServe()
 }

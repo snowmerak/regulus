@@ -4,6 +4,8 @@ import (
 	"net"
 	"net/http"
 	"strings"
+
+	"github.com/rs/zerolog/log"
 )
 
 const (
@@ -87,4 +89,6 @@ func getMyIpHandler(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusInternalServerError)
 		}
 	}
+
+	log.Info().Strs("remote_ip_list", remoteIps).Msg("Got remote IP address")
 }

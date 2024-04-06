@@ -7,16 +7,18 @@ import (
 )
 
 func main() {
-	if len(os.Args) < 2 {
-		panic("Usage: regulus <port>")
+	port := ""
+	if len(os.Args) > 1 {
+		port = os.Args[1]
 	}
 
-	port := os.Args[1]
 	if port == "" {
 		port = ":8080"
 	}
 
 	server := regulus.New(port)
+
+	println(regulus.AsciiArt)
 
 	if err := server.Start(); err != nil {
 		panic(err)
