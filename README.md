@@ -46,13 +46,13 @@ Returns the client's IP address.
 Supports the `X-Forwarded-For` and `X-ProxyUser-Ip`, `X-Real-Ip` headers.
 
 Supported formats:
-- str: simple string
+- str: /ip?format=str
 
 ```
 127.0.0.1
 ```
 
-- json: json object
+- json: /ip?format=json
 
 ```
 {
@@ -60,19 +60,19 @@ Supported formats:
 }
 ```
 
-- xml: xml object
+- xml: /ip?format=xml
 
 ```
 <ip>127.0.0.1</ip>
 ```
 
-- yaml: yaml object
+- yaml: /ip?format=yaml
 
 ```
 ip: 127.0.0.1
 ```
 
-- toml: toml object
+- toml: /ip?format=toml
 
 ```
 ip = 127.0.0.1
